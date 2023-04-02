@@ -6,7 +6,7 @@ def syllabus_upload_path(instance, filename):
     return f"{instance.semester}{instance.year}/{instance.course}/{instance.instructor}/{filename}"
 
 class Syllabus(models.Model):
-    YEAR_CHOICES = [(year,year) for year in range(2000, 2030)]
+    YEAR_CHOICES = [(year,year) for year in range(2020, 2030)]
     SEMESTER_CHOICES = [
         ('fall', 'Fall'),
         ('janplan', 'JanPlan'),

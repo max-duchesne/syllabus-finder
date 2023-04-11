@@ -1,7 +1,7 @@
-from django.urls import path
-from . import views
+from rest_framework import routers
+from .views import SyllabusViewSet
 
-urlpatterns = [
-    path('api/syllabi/', views.SyllabusListCreate.as_view()),
-]
+router = routers.DefaultRouter()
+router.register('api/syllabi', SyllabusViewSet)
 
+urlpatterns = router.urls

@@ -1,57 +1,22 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
+import React from 'react';
+import { useState, useEffect } from 'react';
 
-import Header from "./layout/Header"
+import Navbar from './layout/Navbar';
+import CourseList from './content/CourseList';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [],
-      loaded: false,
-      placeholder: "Loading"
-    };
-  }
+export default function App() {
+  const [courses, setCourses] = useState([]);
 
-  componentDidMount() {
+  useEffect(() => {
     fetch("api/syllabi")
-      .then(response => {
-        if (response.status > 400) {
-          return this.setState(() => {
-            return { placeholder: "Something went wrong!" };
-          });
-        }
-        return response.json();
-      })
-      .then(data => {
-        this.setState(() => {
-          return {
-            data,
-            loaded: true
-          };
-        });
-      });
-  }
+      .then(response => response.json())
+      .then(data => setCourses(data));
+  }, []);
 
-  render() {
-    return (
-      <div>
-        <Header />
-        <ul>
-          {this.state.data.map(syllabus => {
-            return (
-              <li key={syllabus.id}>
-                {syllabus.course} - {syllabus.instructor}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    );
-  }
+  return (
+    <div className='container'>
+      <Navbar />
+      <CourseList courses={courses} />
+    </div>
+  );
 }
-
-export default App;
-
-const container = document.getElementById("app");
-render(<App />, container);

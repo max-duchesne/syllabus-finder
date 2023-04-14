@@ -12,7 +12,7 @@ export default function CourseList(props) {
           <tr>
             <th className='col-4'>Course</th>
             <th className='col-4'>Instructor</th>
-            <th className='col-4'>Syllabus</th>
+            <th className='col-4'></th>
           </tr>
         </thead>
         <tbody>

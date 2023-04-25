@@ -20,10 +20,6 @@ export default function App() {
     fetchCourses().then(data => setCourses(data));
   }, []);
 
-  const addCourse = (newCourse) => {
-    setCourses([...courses, newCourse]);
-  }
-
   function changePage(newPage) {
     setPage(newPage);
   }  
@@ -34,7 +30,7 @@ export default function App() {
       content = <CourseList courses={courses} />;
       break;
     case PAGES.ADD_COURSE_FORM:
-      content = <AddCourseForm addCourse={addCourse} />;
+      content = <AddCourseForm />;
       break;
     default:
       content = null;

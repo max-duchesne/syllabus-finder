@@ -18,7 +18,7 @@ export default function CourseList(props) {
         <tbody>
           {courses.map(syllabus => {
             return (
-              <Course syllabus={syllabus} />
+              <Course key={syllabus.id} syllabus={syllabus} />
             );
           })}
         </tbody>

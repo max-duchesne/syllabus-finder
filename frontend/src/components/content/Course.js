@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack5';
+import 'react-pdf/dist/esm/Page/TextLayer.css';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 
 export default function Course(props) {
   const { syllabus } = props;
@@ -16,20 +18,20 @@ export default function Course(props) {
       <td>{syllabus.instructor}</td>
       <td>
 
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#syllabusModal">
+        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#syllabusModal">
           View Syllabus
         </button>
 
-        <div class="modal fade" id="syllabusModal" tabindex="-1" aria-labelledby="syllabusModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-scrollable modal-xl">
-            <div class="modal-content">
-              <div class="modal-body">
+        <div className="modal fade" id="syllabusModal" tabIndex="-1" aria-labelledby="syllabusModalLabel" aria-hidden="true">
+          <div className="modal-dialog modal-dialog-scrollable modal-xl">
+            <div className="modal-content">
+              <div className="modal-body">
                 <Document file={syllabus.pdf} onLoadSuccess={onDocumentLoadSuccess}>
                   <Page pageNumber={pageNumber} />
                 </Document>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               </div>
             </div>
           </div>

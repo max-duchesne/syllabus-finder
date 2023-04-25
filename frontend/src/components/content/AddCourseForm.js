@@ -2,13 +2,15 @@ import React, { useState } from 'react'
 
 import { postCourse } from '../../actions/courses';
 
-export default function AddCourseForm() {
+export default function AddCourseForm(props) {
+
+  const { setPage, courses, setCourses, PAGES } = props;
 
   const [formData, setFormData] = useState({
     course: '',
     instructor: '',
-    year: '',
-    semester: '',
+    year: 2020,
+    semester: 'fall',
     pdf: '',
   });
 
@@ -24,8 +26,11 @@ export default function AddCourseForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    postCourse(formData);
-  }
+    postCourse(formData).then((newCourse) => {
+      setCourses([...courses, newCourse]);
+      setPage(PAGES.COURSE_LIST);
+    });
+  };  
 
   return (
     <div className="container">

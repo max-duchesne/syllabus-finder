@@ -6,10 +6,14 @@ import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 export default function Course(props) {
   const { syllabus } = props;
   const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
+  }
+
+  const pages = [];
+  for (let i = 1; i <= numPages; i++) {
+    pages.push(<Page key={i} pageNumber={i} />);
   }
 
   return (
@@ -27,7 +31,7 @@ export default function Course(props) {
             <div className="modal-content">
               <div className="modal-body">
                 <Document file={syllabus.pdf} onLoadSuccess={onDocumentLoadSuccess}>
-                  <Page pageNumber={pageNumber} />
+                  {pages}
                 </Document>
               </div>
               <div className="modal-footer">

@@ -20,17 +20,13 @@ export default function App() {
     fetchCourses().then(data => setCourses(data));
   }, []);
 
-  function changePage(newPage) {
-    setPage(newPage);
-  }  
-
   let content;
   switch (page) {
     case PAGES.COURSE_LIST:
       content = <CourseList courses={courses} />;
       break;
     case PAGES.ADD_COURSE_FORM:
-      content = <AddCourseForm />;
+      content = <AddCourseForm setPage={setPage} courses={courses} setCourses={setCourses} PAGES={PAGES}/>;
       break;
     default:
       content = null;
@@ -38,7 +34,7 @@ export default function App() {
 
   return (
     <div className='container'>
-      <Navbar changePage={changePage} PAGES={PAGES} />
+      <Navbar setPage={setPage} PAGES={PAGES} />
       {content}
     </div>
   );

@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 import { postCourse } from '../../actions/courses';
 
 export default function AddCourseForm(props) {
 
-  const { setPage, courses, setCourses, PAGES } = props;
+  const { courses, setCourses } = props;
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     course: '',
@@ -28,7 +30,7 @@ export default function AddCourseForm(props) {
     event.preventDefault();
     postCourse(formData).then((newCourse) => {
       setCourses([...courses, newCourse]);
-      setPage(PAGES.COURSE_LIST);
+      navigate('/');
     });
   };  
 
